@@ -1,11 +1,27 @@
 import { Avatar, Box, Button, Checkbox, Container, CssBaseline, FormControlLabel, Grid, Link, TextField, Typography } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 
+
+const inputs = [
+    {name:"fName", label:"FirstName", type:"text", required:true },
+    {name:"lName", label:"LastName", type:"text", required:true },
+    {name:"email", label:"Email", type:"email", required:true },
+    {name:"password", label:"Password", type:"password", required:true },
+    {name:"repeatpassword", label:"Repeat-Password", type:"password", required:true }
+]
 
 const SignUp = () => {
+    const [formData, setFormData] = useState ("");
+    const handleChange =(e)=>{
+        const{name, value} =e.target;
+        console.log("changing")
+        setFormData({...formData, [name]:value});
+    }
     const handleSubmit = (e)=>{
         e.preventDefault();
         console.log("object")
+        const {password, repeatpassword, ...restformData}= formData;
+        const {email} =formData;
     }
   return (
     <Container component="main" maxWidth="xs">
@@ -24,57 +40,24 @@ const SignUp = () => {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
-              </Grid>
+          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}  >
+          
+                {inputs.map(input=>(
+                     <TextField sx={{mt:2}}
+                        key={input.name} label={input.label} onChange={handleChange} {...input} fullWidth
+                    
+                   />
+                ))}
+               
+           
+              
               <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
                   label="I want to receive inspiration, marketing promotions and updates via email."
                 />
               </Grid>
-            </Grid>
+           
             <Button
               type="submit"
               fullWidth
