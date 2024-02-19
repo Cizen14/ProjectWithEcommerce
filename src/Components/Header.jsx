@@ -3,8 +3,8 @@ import React from 'react'
 import img1 from '../assets/logo.png'
 import AdbIcon from '@mui/icons-material/Adb';
 import MenuIcon from '@mui/icons-material/Menu';
-import Login from '../Authentication/Login';
-import { useLocation } from 'react-router-dom';
+
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const location = useLocation();
@@ -130,7 +130,9 @@ const Header = () => {
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
-              >
+                component={Link}
+                to={page.toLowerCase()=== 'home' ? '/' : `/${page.toLowerCase()}` }
+               >
                 {page}
               </Button>
             ))}
