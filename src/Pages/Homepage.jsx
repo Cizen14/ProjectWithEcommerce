@@ -1,13 +1,14 @@
 import React from 'react'
-import Header from '../Components/Header'
-import Footer from './Footer'
+
+import PageLayout from '../Components/PageLayout'
+
 
 const Homepage = () => {
   return (
     <>
-   <Header />
-
-   <Footer />
+   <PageLayout>
+        <h1> Welcome to the shopping page</h1>
+   </PageLayout>
    </>
   )
 }

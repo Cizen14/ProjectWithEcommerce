@@ -1,10 +1,13 @@
 import React from 'react'
+import PageLayout from '../Components/PageLayout'
 
 const Resetpassword = () => {
   return (
-    <div>
-      
-    </div>
+   <>
+   <PageLayout>
+    
+   </PageLayout>
+   </>
   )
 }
 

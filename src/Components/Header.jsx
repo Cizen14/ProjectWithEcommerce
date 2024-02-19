@@ -3,8 +3,11 @@ import React from 'react'
 import img1 from '../assets/logo.png'
 import AdbIcon from '@mui/icons-material/Adb';
 import MenuIcon from '@mui/icons-material/Menu';
+import Login from '../Authentication/Login';
+import { useLocation } from 'react-router-dom';
 
 const Header = () => {
+  const location = useLocation();
     const pages = ['Home','Products', 'About', 'Contact us'];
     const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -23,6 +26,39 @@ const Header = () => {
       const handleCloseUserMenu = () => {
         setAnchorElUser(null);
       };
+      const authPage = location.pathname === '/login' || location.pathname === '/signup';
+
+      if(authPage){
+        return( <AppBar position="fixed" sx={{ background: 'linear-gradient( to right, #93A5CF, #E2D1C3)', width:'100%', paddingRight:'20px'}}>
+          <Container maxWidth="xl">
+            <Toolbar disableGutters>
+            <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            sx={{
+              m: "auto",
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+             
+            }}
+          >
+            <div className='logoforauth'>
+            <img  src={img1} alt='img' />
+            </div>
+          </Typography>
+
+            </Toolbar>
+          </Container>
+        </AppBar>
+
+        );
+      }
+
   return (
    
     <AppBar position="fixed" sx={{ background: 'linear-gradient( to right, #93A5CF, #E2D1C3)', width:'100%', paddingRight:'20px'}}>
@@ -130,6 +166,8 @@ const Header = () => {
             </Menu>
           </Box>
         </Toolbar>
+
+       
       
     </AppBar>
    

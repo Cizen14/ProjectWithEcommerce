@@ -90,7 +90,7 @@ const Footer = () => {
               </MDBBtn>
             </section>
             <p style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
-            © 2020 Copyright: All Rights have been Reserved !!!
+            © 2024 Copyright: All Rights have been Reserved !!!
             </p>
           </MDBContainer>
     

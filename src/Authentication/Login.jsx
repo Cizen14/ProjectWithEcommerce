@@ -1,10 +1,13 @@
 import { Avatar, Box, Button, Checkbox, CssBaseline, FormControlLabel, Grid, TextField, Typography } from '@mui/material'
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link} from 'react-router-dom'
+import PageLayout from '../Components/PageLayout'
 
 const Login = () => {
   return (
-    <Grid container component="main" sx={{ height: '100vh' }}>
+    <>
+    <PageLayout>
+    <Grid container component="main" >
     <CssBaseline />
    <div className='loginpage'>
    <Grid
@@ -89,7 +92,8 @@ const Login = () => {
     </Grid>
     </div>
   </Grid>
-  
+  </PageLayout>
+  </>
   )
 }
 
