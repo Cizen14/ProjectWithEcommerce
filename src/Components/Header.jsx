@@ -9,7 +9,7 @@ import { Link, useLocation } from 'react-router-dom';
 const Header = () => {
   const location = useLocation();
     const pages = ['Home','Products', 'About', 'Contact us'];
-    const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+    const settings = ['History', 'Dashboard', 'Logout'];
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const handleOpenNavMenu = (event) => {
@@ -162,7 +162,10 @@ const Header = () => {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                  <Typography textAlign="center"
+                  component={Link}
+                  to={setting.toLowerCase()=== 'logout'? '/login' : `/${setting.toLowerCase()}`}
+                  >{setting}</Typography>
                 </MenuItem>
               ))}
             </Menu>
