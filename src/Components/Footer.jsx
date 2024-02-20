@@ -13,7 +13,7 @@ import {
 
 const Footer = () => {
 
-  const authPage = location.pathname === '/login' || location.pathname === '/signup';
+  const authPage = location.pathname === '/login' || location.pathname === '/signup' || location.pathname ==='/add/products';
 
       if(authPage){
         return( <MDBFooter  className='text-center text-white' style={{position:'fixed',background: 'linear-gradient( to right, #93A5CF, #E2D1C3)', bottom: 0,right:0, width: '100%'}}>

@@ -16,6 +16,7 @@ const columns = [
   
   const rows = [
     
+    
   ];
   
 
@@ -33,7 +34,7 @@ const ProductTable = () => {
   };
   return (
     <>
-    <h1 style={{marginBottom:'10px'}}> Products Table</h1>
+    <h1 style={{margin:'15px', display:'flex', justifyContent:'center'}}> Products Table</h1>
     <Link to= '/add/products'>
     <Button sx={{ display:'flex', justifyContent:'flex-end'}}> Add Product</Button>
     </Link>

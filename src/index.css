@@ -66,3 +66,14 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.page-container {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-in-out, transform 0.5s ease-in-out; /* Customize the duration and easing functions */
+}
+
+.page-container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

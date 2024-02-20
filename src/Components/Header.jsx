@@ -29,7 +29,7 @@ const Header = () => {
       const authPage = location.pathname === '/login' || location.pathname === '/signup';
 
       if(authPage){
-        return( <AppBar position="fixed" sx={{ background: 'linear-gradient( to right, #93A5CF, #E2D1C3)', width:'100%', paddingRight:'20px'}}>
+        return( <AppBar position='fixed' sx={{ background: 'linear-gradient( to right, #93A5CF, #E2D1C3)', width:'100%', paddingRight:'20px'}}>
           <Container maxWidth="xl">
             <Toolbar disableGutters>
             <Typography
@@ -61,7 +61,7 @@ const Header = () => {
 
   return (
    
-    <AppBar  sx={{ background: 'linear-gradient( to right, #93A5CF, #E2D1C3)', width:'100%', paddingRight:'20px'}}>
+    <AppBar sx={{ background: 'linear-gradient( to right, #93A5CF, #E2D1C3)', width:'100%', paddingRight:'20px'}}>
       
         <Toolbar disableGutters>
           
