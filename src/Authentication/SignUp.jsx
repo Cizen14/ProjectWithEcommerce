@@ -1,5 +1,13 @@
 import { Avatar, Box, Button, Checkbox, Container, CssBaseline, FormControlLabel, Grid, Link, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
+import { toast } from 'react-toastify';
+import { auth, db } from '../Firebase-config';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
+import { NavLink } from 'react-router-dom';
+import PageLayout from '../Components/PageLayout';
+import { useDispatch } from 'react-redux';
+
 
 
 const inputs = [
@@ -11,20 +19,61 @@ const inputs = [
 ]
 
 const SignUp = () => {
-    const [formData, setFormData] = useState ("");
+    const [formData, setFormData] = useState ({});
+    const dispatch = useDispatch()
     const handleChange =(e)=>{
         const{name, value} =e.target;
         console.log("changing")
         setFormData({...formData, [name]:value});
     }
-    const handleSubmit = (e)=>{
+
+ 
+
+
+
+
+
+
+    const handleSubmit = async (e)=>{
         e.preventDefault();
         console.log("object")
         const {password, repeatpassword, ...restformData}= formData;
         const {email} =formData;
+        if (password !== repeatpassword){
+          return toast.error("Password Didnot match")
+        }
+
+        const signupPromise=  createUserWithEmailAndPassword(auth, email, password)
+        toast.promise(signupPromise,{
+          pending:"In Progress..."
+        });
+        try{
+          const userCredential = await signupPromise;
+          toast("User Created Successfully");
+        
+        const {uid} = userCredential.user;
+
+        await setDoc(doc(db, "users", uid),{
+          ...restformData, uid
+        });
+        setFormData({});
+      }
+      
+      catch(error){
+        const errorCode = error.code;
+
+        if(errorCode.includes("auth/email-already-in-use")){
+          toast.error("Account Already exists")
+        }
+        else{
+          toast.error(error.message);
+        }
+      }
     }
   return (
-    <Container component="main" maxWidth="xs">
+    <PageLayout>
+      
+    <Container component="main" maxWidth="xs" style={{height:'150vh', marginTop:'7%'}}>
         <CssBaseline />
         <Box
           sx={{
@@ -66,17 +115,16 @@ const SignUp = () => {
             >
               Sign Up
             </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid>
+          
+            <div> Already have an account?<NavLink to={"/login"}> Login</NavLink></div>
+
+           
           </Box>
         </Box>
        
       </Container>
+    
+      </PageLayout>
   )
 }
 
