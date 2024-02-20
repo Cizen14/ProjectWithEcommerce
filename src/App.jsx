@@ -4,29 +4,28 @@ import './App.css'
 import SignUp from './Authentication/SignUp'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Login from './Authentication/Login'
-import Homepage from './Pages/Homepage'
+
 import About from './Pages/About'
 import Products from './Pages/Products/Products'
 import Dashboard from './Pages/Dashboard'
-import History from './Pages/History'
+
 import AddProduct from './Pages/Products/AddProduct'
+import PrivateRoute from './Authentication/privateRoute/PrivateRoute'
+
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
     <>
     <BrowserRouter>
     <Routes>
       <Route path='/login' element={<Login/>} > </Route>
-      <Route path='/signup' element={<SignUp/>} > </Route>
-      <Route path='/' element={<Homepage/>} > </Route>
-      <Route path='/products' element={<Products/>} > </Route>
-      <Route path='/about' element={<About/>} > </Route>
-      <Route path='/history' element={<History/>} > </Route>
-      <Route path='/dashboard' element={<Dashboard/>} > </Route>
-      <Route path='/add/products' element={<AddProduct/>} > </Route>
+      <Route path='/signup' element={<PrivateRoute><SignUp/></PrivateRoute>} > </Route>
+      <Route path='/products' element={ <PrivateRoute> <Products/></PrivateRoute> } > </Route>
+      <Route path='/' element={<PrivateRoute><Dashboard/></PrivateRoute>} > </Route>
+      <Route path='/add/products' element={<PrivateRoute><AddProduct/></PrivateRoute>} > </Route>
     </Routes>
     </BrowserRouter>
 

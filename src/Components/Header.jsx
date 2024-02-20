@@ -4,12 +4,18 @@ import img1 from '../assets/logo.png'
 import AdbIcon from '@mui/icons-material/Adb';
 import MenuIcon from '@mui/icons-material/Menu';
 
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import {auth } from '../Firebase-config'
+import { signOut } from 'firebase/auth';
+import { toast } from 'react-toastify';
+import { setUserInfo } from '../../redux/Auth/authSlice';
 
 const Header = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
     const pages = ['Home','Products', 'About', 'Add to Cart'];
-    const settings = ['History', 'Dashboard', 'Logout'];
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const handleOpenNavMenu = (event) => {
@@ -25,11 +31,25 @@ const Header = () => {
     
       const handleCloseUserMenu = () => {
         setAnchorElUser(null);
+
       };
+        const handleLogout=()=>{
+          signOut(auth). then(()=>{
+            dispatch(setUserInfo({}));
+            navigate('/login');
+          })
+          .catch((e) => {
+            toast.error(e.message)
+          })
+       
+          
+
+        }
+
       const authPage = location.pathname === '/login' || location.pathname === '/signup';
 
       if(authPage){
-        return( <AppBar position='fixed' sx={{ background: 'linear-gradient( to right, #93A5CF, #E2D1C3)', width:'100%', paddingRight:'20px'}}>
+        return( <AppBar  sx={{ position:'fixed',background: 'linear-gradient( to right, #93A5CF, #E2D1C3)', width:'100%', paddingRight:'20px'}}>
           <Container maxWidth="xl">
             <Toolbar disableGutters>
             <Typography
@@ -160,14 +180,20 @@ const Header = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center"
-                  component={Link}
-                  to={setting.toLowerCase()=== 'logout'? '/login' : `/${setting.toLowerCase()}`}
-                  >{setting}</Typography>
+              
+                <MenuItem  onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">
+                  
+                  <Button sx={{ color: 'black' }} >
+                  Dashboard
+                  </Button>
+                  <Button sx={{ color: 'red' }} onClick={handleLogout}>
+                  Sign out
+                  </Button>
+              
+                  </Typography>
                 </MenuItem>
-              ))}
+             
             </Menu>
           </Box>
         </Toolbar>
