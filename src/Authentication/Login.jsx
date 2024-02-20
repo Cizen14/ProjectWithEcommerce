@@ -7,7 +7,8 @@ const Login = () => {
   return (
     <>
     <PageLayout>
-    <Grid container component="main" >
+     
+    <Grid container component="main">
     <CssBaseline />
    <div className='loginpage'>
    <Grid
@@ -92,6 +93,7 @@ const Login = () => {
     </Grid>
     </div>
   </Grid>
+
   </PageLayout>
   </>
   )

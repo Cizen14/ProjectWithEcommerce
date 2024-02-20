@@ -6,9 +6,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Login from './Authentication/Login'
 import Homepage from './Pages/Homepage'
 import About from './Pages/About'
-import Products from './Pages/Products'
+import Products from './Pages/Products/Products'
 import Dashboard from './Pages/Dashboard'
 import History from './Pages/History'
+import AddProduct from './Pages/Products/AddProduct'
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
       <Route path='/about' element={<About/>} > </Route>
       <Route path='/history' element={<History/>} > </Route>
       <Route path='/dashboard' element={<Dashboard/>} > </Route>
+      <Route path='/add/products' element={<AddProduct/>} > </Route>
     </Routes>
     </BrowserRouter>
 

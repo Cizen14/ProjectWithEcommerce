@@ -7,9 +7,9 @@
 
 
 
-.navbar{
+/* .navbar{
   width: fit-content;
-}
+} */
 
 .loginpage{
   display: flex;
@@ -32,6 +32,11 @@
   
   
 
+}
+
+.btn1{
+  display: flex;
+  justify-content: flex-start;
 }
 
 .logoforauth img{
