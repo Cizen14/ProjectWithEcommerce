@@ -8,7 +8,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const location = useLocation();
-    const pages = ['Home','Products', 'About', 'Contact us'];
+    const pages = ['Home','Products', 'About', 'Add to Cart'];
     const settings = ['History', 'Dashboard', 'Logout'];
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -61,7 +61,7 @@ const Header = () => {
 
   return (
    
-    <AppBar position="fixed" sx={{ background: 'linear-gradient( to right, #93A5CF, #E2D1C3)', width:'100%', paddingRight:'20px'}}>
+    <AppBar  sx={{ background: 'linear-gradient( to right, #93A5CF, #E2D1C3)', width:'100%', paddingRight:'20px'}}>
       
         <Toolbar disableGutters>
           

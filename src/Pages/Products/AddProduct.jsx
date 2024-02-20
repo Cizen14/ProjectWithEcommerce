@@ -22,7 +22,7 @@ const AddProduct = () => {
                     <TextField id="outlined-basic" label="Image" variant="outlined" />
                     <TextField id="outlined-basic" label="Description" variant="outlined" />
                     <TextField id="outlined-basic" label="Price" variant="outlined" />
-                    <Button variant="contained"> Add Book</Button>
+                    <Button variant="contained"> Add </Button>
                     <Link to= '/products' >
                     <Button variant="contained" margin={0} marginTop={2}> Back</Button>
                     </Link>

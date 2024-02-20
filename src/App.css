@@ -1,20 +1,18 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+width: 100%;
+  margin: 0 ;
+  padding: 0;
 }
 
 
 
-/* .navbar{
-  width: fit-content;
-} */
+
 
 .loginpage{
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
   
 }
 
@@ -48,3 +46,4 @@
   
 
 }
+
