@@ -51,16 +51,16 @@ const Login = () => {
   
 }
 
-// useEffect(()=>{
-//   if(userInfo.uid){
-//     if (location.state?.path){
-//       navigate(location.state.path);
-//     }
-//     else{
-//       navigate('/')
-//     }
-//   }
-// }, [userInfo])
+useEffect(()=>{
+  if(userInfo.uid){
+    if (location.state?.path){
+      navigate(location.state.path);
+    }
+    else{
+      navigate('/')
+    }
+  }
+}, [userInfo])
 
   return (
     <>

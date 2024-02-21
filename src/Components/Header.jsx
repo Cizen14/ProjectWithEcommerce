@@ -4,7 +4,7 @@ import img1 from '../assets/logo.png'
 import AdbIcon from '@mui/icons-material/Adb';
 import MenuIcon from '@mui/icons-material/Menu';
 
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import {auth } from '../Firebase-config'
 import { signOut } from 'firebase/auth';
@@ -15,7 +15,13 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-    const pages = ['Home','Products', 'About', 'Add to Cart'];
+    // const pages = ['dashboard','Products', 'CreateUser', 'Review'];
+    const newpages = [
+      { title: 'dashboard', href: "/" },
+      { title: 'Products', href: "/products" }, 
+      { title: 'CreateUser', href: "/signup" }, 
+      { title: 'Review', href: "/review" }
+    ]
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const handleOpenNavMenu = (event) => {
@@ -135,9 +141,9 @@ const Header = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {newpages.map((page) => (
+                <MenuItem key={page.title} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -145,15 +151,17 @@ const Header = () => {
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', justifyContent:'flex-end'} }}>
-            {pages.map((page) => (
+            {newpages.map((page) => (
               <Button
-                key={page}
+                key={page.title}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
                 component={Link}
-                to={page.toLowerCase()=== 'home' ? '/' : `/${page.toLowerCase()}` }
+                to={page.href}
+                // to={page.toLowerCase()=== 'createuser' ? '/signup' : `/${page.toLowerCase()}` }
+               
                >
-                {page}
+                {page.title}
               </Button>
             ))}
           </Box>
@@ -183,13 +191,11 @@ const Header = () => {
               
                 <MenuItem  onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">
-                  
-                  <Button sx={{ color: 'black' }} >
-                  Dashboard
-                  </Button>
+                 
                   <Button sx={{ color: 'red' }} onClick={handleLogout}>
                   Sign out
                   </Button>
+                  
               
                   </Typography>
                 </MenuItem>
