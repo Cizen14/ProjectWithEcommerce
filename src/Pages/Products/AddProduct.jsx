@@ -2,16 +2,19 @@ import { Box, Button, Container, Paper, TableContainer, TextField } from '@mui/m
 import React from 'react'
 import PageLayout from '../../Components/PageLayout'
 import { Link } from 'react-router-dom'
+import AdminLayout from '../../Components/AdminLayout'
+
 
 const AddProduct = () => {
   return (
     <>
-    <PageLayout>
+    
+    <AdminLayout>
       <div style={{marginTop:'7%'}}>
 
-   <div style={{margin:'10px'}}>
+   <div style={{marginLeft:'10%'}}>
          <Link to= '/products' >
-          <Button variant="contained" padding={2} marginTop={2}> Back</Button>
+          <Button variant="contained" padding={2} marginTop={2} marginLeft={10}> Back</Button>
          </Link>
     </div>
     <h2 style={{display:'flex', justifyContent:'center'}}>Add Product</h2>
@@ -33,7 +36,7 @@ const AddProduct = () => {
          </form>
          </Box>
          </div>
-    </PageLayout>
+    </AdminLayout>
     
             
        

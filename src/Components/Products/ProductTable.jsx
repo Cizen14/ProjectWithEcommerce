@@ -34,6 +34,7 @@ const ProductTable = () => {
   };
   return (
     <>
+    <div style={{margin:' 10%'}} >
     <h1 style={{margin:'15px', display:'flex', justifyContent:'center'}}> Products Table</h1>
     <Link to= '/add/products'>
     <Button sx={{ display:'flex', justifyContent:'flex-end'}}> Add Product</Button>
@@ -86,6 +87,7 @@ const ProductTable = () => {
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </Paper>
+    </div>
     </>
   )
 }

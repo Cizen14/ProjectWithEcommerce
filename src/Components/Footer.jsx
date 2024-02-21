@@ -107,7 +107,7 @@ const Footer = () => {
 
   return (
  
-        <MDBFooter className='text-center text-white' style={{background: 'linear-gradient( to right, #93A5CF, #E2D1C3)',margin:'0px' }}>
+        <MDBFooter className='text-center text-white' style={{ position:'fixed', background: 'linear-gradient( to right, #93A5CF, #E2D1C3)',bottom: 0,right:0, width: '100%' }}>
           <MDBContainer className='pt-4'>
             <section className='mb-4'>
               <MDBBtn

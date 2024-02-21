@@ -77,6 +77,43 @@ const Header = () => {
             <img  src={img1} alt='img' />
             </div>
           </Typography>
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="C" src="/static/images/avatar/2.jpg" />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              
+                <MenuItem  onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">
+                  
+                 
+                  <Button sx={{ color: 'red' }} onClick={handleLogout}>
+                  Sign out
+                  </Button>
+                  
+              
+                  </Typography>
+                </MenuItem>
+             
+            </Menu>
+          </Box>
 
             </Toolbar>
           </Container>
@@ -91,13 +128,12 @@ const Header = () => {
       
         <Toolbar disableGutters>
           
-          <Typography
+        <Typography
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
             sx={{
-              mr: 2,
+              m: "auto",
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
@@ -107,7 +143,9 @@ const Header = () => {
              
             }}
           >
-            <img className='logoimg' src={img1} alt='img'/>
+            <div className='logoforauth'>
+            <img  src={img1} alt='img' />
+            </div>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -141,17 +179,17 @@ const Header = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {newpages.map((page) => (
+              {/* {newpages.map((page) => (
                 <MenuItem key={page.title} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page.title}</Typography>
                 </MenuItem>
-              ))}
+              ))} */}
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', justifyContent:'flex-end'} }}>
-            {newpages.map((page) => (
+            {/* {newpages.map((page) => (
               <Button
                 key={page.title}
                 onClick={handleCloseNavMenu}
@@ -163,7 +201,7 @@ const Header = () => {
                >
                 {page.title}
               </Button>
-            ))}
+            ))} */}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
@@ -191,6 +229,7 @@ const Header = () => {
               
                 <MenuItem  onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">
+                  
                  
                   <Button sx={{ color: 'red' }} onClick={handleLogout}>
                   Sign out

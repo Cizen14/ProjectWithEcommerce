@@ -7,6 +7,7 @@ import { doc, setDoc } from 'firebase/firestore';
 import { NavLink } from 'react-router-dom';
 import PageLayout from '../Components/PageLayout';
 import { useDispatch } from 'react-redux';
+import AdminLayout from '../Components/AdminLayout';
 
 
 
@@ -71,7 +72,7 @@ const SignUp = () => {
       }
     }
   return (
-    <PageLayout>
+    <AdminLayout>
       
     <Container component="main" maxWidth="xs" style={{height:'150vh', marginTop:'7%'}}>
         <CssBaseline />
@@ -124,7 +125,7 @@ const SignUp = () => {
        
       </Container>
     
-      </PageLayout>
+      </AdminLayout>
   )
 }
 
