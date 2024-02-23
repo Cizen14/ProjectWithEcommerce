@@ -1,5 +1,6 @@
 import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material';
 import React from 'react'
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 const columns = [
     { id: 'productName', label: 'Product Name', minWidth: 150 },
@@ -15,6 +16,7 @@ const columns = [
 
   
   const rows = [
+   
     
     
   ];
@@ -23,6 +25,8 @@ const columns = [
 const ProductTable = () => {
     const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const {productList}= useSelector(state=>state.product);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -34,7 +38,7 @@ const ProductTable = () => {
   };
   return (
     <>
-    <div style={{margin:' 10%'}} >
+    <div style={{marginLeft:'9%'}} >
     <h1 style={{margin:'15px', display:'flex', justifyContent:'center'}}> Products Table</h1>
     <Link to= '/add/products'>
     <Button sx={{ display:'flex', justifyContent:'flex-end'}}> Add Product</Button>
@@ -56,24 +60,19 @@ const ProductTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
+          {productList
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((row) => (
+                    <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
+                      {columns.map((column) => (
                         <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
+                          {column.format && typeof row[column.id] === 'number'
+                            ? column.format(row[column.id])
+                            : row[column.id]}
                         </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
+                      ))}
+                    </TableRow>
+                  ))}
           </TableBody>
         </Table>
       </TableContainer>

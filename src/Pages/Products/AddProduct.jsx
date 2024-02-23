@@ -1,11 +1,34 @@
 import { Box, Button, Container, Paper, TableContainer, TextField } from '@mui/material'
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import PageLayout from '../../Components/PageLayout'
 import { Link } from 'react-router-dom'
 import AdminLayout from '../../Components/AdminLayout'
+import { addProductAction } from '../../../redux/Products/productAction'
 
 
 const AddProduct = () => {
+  const [formData, setFormData] = useState();
+  const formRef = useRef();
+
+
+  const handleChange =(e)=>{
+    const {name, value} =e.target;
+    setFormData({...formData, [name]:value});
+    
+  }
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+
+    try{
+      addProductAction(formData);
+
+      formRef.current.reset();
+    }
+    catch(e){
+      console.log(e);
+    }
+  }
+
   return (
     <>
     
@@ -14,22 +37,22 @@ const AddProduct = () => {
 
    <div style={{marginLeft:'10%'}}>
          <Link to= '/products' >
-          <Button variant="contained" padding={2} marginTop={2} marginLeft={10}> Back</Button>
+          <Button variant="contained" sx={{m:2}} > Back</Button>
          </Link>
     </div>
     <h2 style={{display:'flex', justifyContent:'center'}}>Add Product</h2>
     
     <Box sx={{border:'1', borderColor:"primary.main", p:'2', }}>
    
-        <form>
+        <form onSubmit={handleSubmit} ref={formRef}>
             <TableContainer sx={{maxHeight: 550}}>
                 <Container sx={{display:'flex',flexDirection:'column',justifyItems:'center', gap:'10px'}}>
-                    <TextField id="outlined-basic" label="Product Name" variant="outlined" />
-                    <TextField id="outlined-basic" label="Product Code" variant="outlined" />
-                    <TextField id="outlined-basic" label="Image" variant="outlined" />
-                    <TextField id="outlined-basic" label="Description" variant="outlined" />
-                    <TextField id="outlined-basic" label="Price" variant="outlined" />
-                    <Button variant="contained"> Add </Button>
+                    <TextField id="outlined-basic" label="Product Name" variant="outlined" onChange={handleChange} />
+                    <TextField id="outlined-basic" label="Product Code" variant="outlined" onChange={handleChange} />
+                    <TextField id="outlined-basic" label="Image" variant="outlined" onChange={handleChange} />
+                    <TextField id="outlined-basic" label="Description" variant="outlined" onChange={handleChange} />
+                    <TextField id="outlined-basic" label="Price" variant="outlined" onChange={handleChange} />
+                    <Button variant="contained" type='submit'> Add </Button>
                    
                 </Container>
             </TableContainer>
