@@ -5,10 +5,12 @@ import { setProductList } from "./productSlice";
 
 
 export const addProductAction = async (productList) =>{
+    console.log(productList)
     try{
        
         const docRef= await addDoc(collection(db, "products"),productList);
         toast.success("Product Added Successfully")  
+        console.log(productList)
 
     }
     catch (e){

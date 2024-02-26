@@ -7,7 +7,7 @@ const columns = [
   {id:'', label:'S.N',minWidth:10},
     { id: 'productName', label: 'Product Name', minWidth: 150 },
     { id: 'code', label: 'Product Code', minWidth: 50 },
-    { id: 'images', label: 'Product Image', minWidth: 170 },
+    { id: 'Image', label: 'Image', minWidth: 170 },
     { id: 'Description', label: 'Product description', minWidth: 100 },
     { id: 'price', label: 'Price', minWidth: 100 },
     
