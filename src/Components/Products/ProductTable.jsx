@@ -1,8 +1,10 @@
 import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from '@mui/material';
-import React from 'react'
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useFetcher } from 'react-router-dom';
+import { getProductListAction } from '../../../redux/Products/productAction';
 const columns = [
+  {id:'', label:'S.N',minWidth:10},
     { id: 'productName', label: 'Product Name', minWidth: 150 },
     { id: 'code', label: 'Product Code', minWidth: 50 },
     { id: 'images', label: 'Product Image', minWidth: 170 },
@@ -16,8 +18,8 @@ const columns = [
 
   
   const rows = [
+ 
    
-    
     
   ];
   
@@ -25,8 +27,14 @@ const columns = [
 const ProductTable = () => {
     const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const dispatch= useDispatch();
+
 
   const {productList}= useSelector(state=>state.product);
+  console.log(productList)
+  
+  
+
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -36,6 +44,13 @@ const ProductTable = () => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  useEffect (()=>{
+    dispatch(getProductListAction());
+  },[]);
+
+  
+  
   return (
     <>
     <div style={{marginLeft:'9%'}} >
@@ -60,19 +75,20 @@ const ProductTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-          {productList
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => (
-                    <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                      {columns.map((column) => (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof row[column.id] === 'number'
-                            ? column.format(row[column.id])
-                            : row[column.id]}
-                        </TableCell>
-                      ))}
-                    </TableRow>
-                  ))}
+          {/* <TableCell> */}
+          
+                      
+              {productList.map(({id, productName, productCode, Image, Description, Price},index)=>(
+                <TableRow key={id}>
+                    <TableCell>{index +1}</TableCell>
+                    <TableCell>{productName}</TableCell>
+                    <TableCell>{productCode}</TableCell>
+                    <TableCell>{Image}</TableCell>
+                    <TableCell>{Description}</TableCell>
+                    <TableCell>${Price}</TableCell>
+                </TableRow>
+              ))}
+            
           </TableBody>
         </Table>
       </TableContainer>

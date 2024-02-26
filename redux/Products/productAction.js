@@ -1,13 +1,13 @@
 import { addDoc, collection, getDoc, getDocs } from "firebase/firestore"
 import { db } from "../../src/Firebase-config"
 import { toast } from "react-toastify";
-import { setProductList, setSelectedProduct } from "./productSlice";
+import { setProductList } from "./productSlice";
 
 
-export const addProductAction = async (productInfo) =>{
+export const addProductAction = async (productList) =>{
     try{
        
-        const docRef= await addDoc(collection(db, "products"),productInfo);
+        const docRef= await addDoc(collection(db, "products"),productList);
         toast.success("Product Added Successfully")  
 
     }
@@ -19,9 +19,9 @@ export const addProductAction = async (productInfo) =>{
 
 
 
-export const getProductListAction = async (dispatch) =>{
+export const getProductListAction = () => async (dispatch) =>{
 try{
-    //get the book from the db
+    //get the product from the db
     const querySnapShotPromise = getDocs(collection(db, "products"));
     toast.promise(querySnapShotPromise,{
         pending:"In Progress..."
@@ -31,12 +31,18 @@ try{
     querySnapShot.forEach((doc)=>{
         const id= doc.id;
         const productData = doc.data();
+        
+        
         productList.push({id, ...productData
+         
         });
+        
+        
     })
-    dispatch(setProductList(productList));
+    dispatch(setProductList(productList))
 }
 catch(error){
+    console.log(error)
     toast('failed', error.message)
 }
 
