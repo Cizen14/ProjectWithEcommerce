@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useFetcher } from 'react-router-dom';
 import { getProductListAction } from '../../../redux/Products/productAction';
+import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
+import { Tonality } from '@mui/icons-material';
 const columns = [
   {id:'', label:'S.N',minWidth:10},
     { id: 'productName', label: 'Product Name', minWidth: 150 },
@@ -83,9 +86,18 @@ const ProductTable = () => {
                     <TableCell>{index +1}</TableCell>
                     <TableCell>{productName}</TableCell>
                     <TableCell>{productCode}</TableCell>
-                    <TableCell>{Image}</TableCell>
+                    <TableCell><img src={Image} alt='image-product' style={{ width: '200px', height: '150px' }} /></TableCell>
                     <TableCell>{Description}</TableCell>
                     <TableCell>${Price}</TableCell>
+                    <TableCell>
+                    <Button variant="contained" endIcon={<SendIcon />}>
+                        Edit
+                    </Button>
+                    <Button variant="outlined" startIcon={<DeleteIcon />} style={{ color: 'red', borderColor: 'red' }}>
+                        Delete
+                    </Button>
+                    </TableCell>
+                  
                 </TableRow>
               ))}
             
